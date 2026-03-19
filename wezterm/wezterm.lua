@@ -11,6 +11,9 @@ local custom_tab_titles = {}
 
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 14
+config.max_fps = 120
+config.animation_fps = 120
+config.window_close_confirmation = "NeverPrompt"
 
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
@@ -214,7 +217,7 @@ config.keys = {
                 elseif id == "close_workspace" then do_close_workspace(window, pane)
                 elseif id == "switch_workspace" then window:perform_action(wezterm.action.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" }, pane)
                 elseif id == "new_workspace" then do_new_workspace(window, pane)
-                elseif id == "close_tab" then window:perform_action(wezterm.action.CloseCurrentTab { confirm = true }, pane)
+                elseif id == "close_tab" then window:perform_action(wezterm.action.CloseCurrentPane { confirm = false }, pane)
                 elseif id == "copy" then window:perform_action(wezterm.action.CopyTo("Clipboard"), pane)
                 elseif id == "paste" then window:perform_action(wezterm.action.PasteFrom("Clipboard"), pane)
                 elseif id == "next_tab" then window:perform_action(wezterm.action.ActivateTabRelative(1), pane)
@@ -255,7 +258,7 @@ config.keys = {
     {
         key = "w",
         mods = "LEADER",
-        action = wezterm.action.CloseCurrentTab { confirm = true },
+        action = wezterm.action.CloseCurrentPane { confirm = false },
     },
     {
         key = "Tab",
