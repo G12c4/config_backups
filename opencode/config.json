@@ -1,1 +1,122 @@
-/Users/josip/.config/opencode/config.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "autoupdate": true,
+  "plugin": ["opencode-antigravity-auth@1.6.0"],
+  "compaction": {
+    "auto": false,
+    "prune": true,
+    "reserved": 10000
+  },
+  "command": {
+    "review": {
+      "template": "Review the latest code changes using the modern-go skill. Ensure strict adherence to Go 1.25+ standards, Zap-based logging, and proper error wrapping. Check for correct usage of the dbproto.BLOB wrapper and Connect RPC handler patterns. Identify any prohibited patterns like manual marshaling or global dependencies.",
+      "description": "Review Go code using modern-go standards",
+      "agent": "plan",
+      "skills": ["modern-go"]
+    },
+    "explain": {
+      "template": "ok now explain in detail what we did and most important why we implemented the current change, read the file or files first to be sure and be to the point but keep in mind that i am new to this project and treat me like a golang junior",
+      "description": "Explain recent changes for a junior Go dev",
+      "agent": "plan"
+    },
+    "plan": {
+      "template": "lets plan out this new feature, guide me detailed step by step, dont show code before we agree on the plan, be to the point but keep in mind that i am new to this project and treat me like a golang junior",
+      "description": "Plan a feature without showing code first",
+      "agent": "plan"
+    },
+    "test": {
+      "template": "Analyze the requirements and create a E2E TDD workflow for this file. Identify if the stack is Go, Python, or JS/TS. Use real implementations and E2E patterns (e.g., testcontainers). Do not use mocks for logic or GET requests; mocks are strictly for POST/PUT HTTP requests to external services. Ensure the implementation follows the project's standards for the detected language.",
+      "description": "Multi-lang E2E TDD Review (No Mocks except POST/PUT)",
+      "agent": "agent",
+      "skills": ["modern-go", "test-driven-development"]
+    },
+    "agent-brower": {
+      "template": "Use the agent-browser cli tool to test open the current project in the browser and act as a new user that sees the website for the first time and click on every button and link to catch missing links or bugs, make a list of things to fix", 
+      "description": "Browser built for agent ui testing",
+      "agent": "agent",
+      "skills": ["agent-browser"]
+    },
+
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    }
+  },
+  "provider": {
+    "google": {
+      "name": "Google",
+      "models": {
+        "antigravity-gemini-3-pro-high": {
+          "name": "Gemini 3 Pro High (Antigravity)",
+          "thinking": true,
+          "attachment": true,
+          "limit": { "context": 1048576, "output": 65535 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "antigravity-gemini-3-pro-low": {
+          "name": "Gemini 3 Pro Low (Antigravity)",
+          "thinking": true,
+          "attachment": true,
+          "limit": { "context": 1048576, "output": 65535 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "antigravity-gemini-3-flash": {
+          "name": "Gemini 3 Flash (Antigravity)",
+          "attachment": true,
+          "limit": { "context": 1048576, "output": 65536 },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "read": "allow",
+    "edit": "ask",
+    "bash": "ask",
+    "grep": "allow",
+    "glob": "allow",
+    "list": "allow",
+    "lsp": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "question": "allow",
+    "webfetch": "allow",
+    "external_directory": "ask"
+  },
+  "agent": {
+    "agent": {
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "bash": "allow",
+        "external_directory": "allow"
+      }
+    },
+    "build": {
+      "permission": {
+        "edit": "ask",
+        "bash": "ask"
+      }
+    },
+    "plan": {
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "bash": "allow"
+      }
+    }
+  }
+}
