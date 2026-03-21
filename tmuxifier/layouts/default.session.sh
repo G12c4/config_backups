@@ -11,17 +11,30 @@
 session_root="$PWD"
 
 # Use provided session name or default to current directory name
-SESSION_NAME="${1:-$(basename "$PWD")}"
+SESSION_NAME="${TMUXIFIER_SESSION_NAME:-$(basename "$PWD")}"
 
 # Check if session already exists
 if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-  tmux attach -t "$SESSION_NAME"
+  if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$SESSION_NAME"
+  else
+    tmux attach -t "$SESSION_NAME"
+  fi
   exit 0
 fi
 
-# Check for Makefile with dev or run target
+# Check for Makefile or Taskfile with dev or run target
 DEV_CMD=""
-if [ -f "$session_root/Makefile" ]; then
+if [ -f "$session_root/Taskfile.yml" ] || [ -f "$session_root/Taskfile.yaml" ]; then
+  # Check for task dev or run
+  if task -l 2>/dev/null | grep -qE "^\s*(dev|run):"; then
+    if task -l 2>/dev/null | grep -qE "^\s*dev:"; then
+      DEV_CMD="task dev"
+    elif task -l 2>/dev/null | grep -qE "^\s*run:"; then
+      DEV_CMD="task run"
+    fi
+  fi
+elif [ -f "$session_root/Makefile" ]; then
   if grep -qE "^(dev|run):" "$session_root/Makefile"; then
     if grep -q "^dev:" "$session_root/Makefile"; then
       DEV_CMD="make dev"
@@ -54,5 +67,8 @@ if [ -n "$DEV_CMD" ]; then
   tmux send-keys -t "$SESSION_NAME":1.4 "$DEV_CMD" C-m
 fi
 
-# Attach to session
-tmux attach -t "$SESSION_NAME"
+if [ -n "$TMUX" ]; then
+  tmux switch-client -t "$SESSION_NAME"
+else
+  tmux attach -t "$SESSION_NAME"
+fi
