@@ -3,14 +3,80 @@
 # Open normie-nvim test config
 NVIM_APPNAME=normie-nvim nvim
 
+# Enter insert mode before cursor in Neovim
+i
+
+# Enter insert mode after cursor in Neovim
+a
+
+# Open a new line below in Neovim
+o
+
+# Return to normal mode in Neovim
+Esc
+
+# Move left down up right in Neovim
+h j k l
+
+# Jump to next word in Neovim
+w
+
+# Jump to previous word in Neovim
+b
+
+# Go to start of line in Neovim
+0
+
+# Go to end of line in Neovim
+$
+
+# Go to top of file in Neovim
+gg
+
+# Go to bottom of file in Neovim
+G
+
+# Half page down centered in Neovim
+Ctrl+d
+
+# Half page up centered in Neovim
+Ctrl+u
+
+# Search next match centered in Neovim
+n
+
+# Search previous match centered in Neovim
+N
+
 # Save current file in Neovim
 Ctrl+s
 
 # Open Yazi file picker in Neovim
 Ctrl+y
 
-# Open Lazygit in Neovim
-Ctrl+g
+# Undo in Neovim
+u
+
+# Redo in Neovim
+Ctrl+r
+
+# Delete current line in Neovim
+dd
+
+# Yank current line in Neovim
+yy
+
+# Paste after cursor in Neovim
+p
+
+# Join line below in Neovim
+J
+
+# Select text in visual mode in Neovim
+v
+
+# Select whole lines in visual mode in Neovim
+V
 
 # Open file explorer in Neovim
 <leader>e
@@ -30,17 +96,53 @@ Tab
 # Previous buffer in Neovim
 Shift+Tab
 
+# Move to left split in Neovim
+Ctrl+h
+
+# Move to lower split in Neovim
+Ctrl+j
+
+# Move to upper split in Neovim
+Ctrl+k
+
+# Move to right split in Neovim
+Ctrl+l
+
+# Split window vertically in Neovim
+<leader>sv
+
+# Split window horizontally in Neovim
+<leader>sh
+
 # Go to definition in Neovim
 gd
+
+# Go to declaration in Neovim
+gD
 
 # Show references in Neovim
 gr
 
+# Go to implementation in Neovim
+gI
+
+# Go to type definition in Neovim
+gy
+
 # Search document symbols in Neovim
 <leader>ss
+
+# Search workspace symbols in Neovim
+<leader>sS
 
 # Reload normie-nvim config and theme
 <leader>rr
 
+# Reload current file from disk in Neovim
+<leader>fl
+
 # Open markdown preview in Neovim
 <leader>mp
+
+# Toggle markdown checkbox in Neovim
+<leader>mc

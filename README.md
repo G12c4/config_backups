@@ -10,6 +10,7 @@ This repository is the source of truth for personal terminal and editor configs,
 - `bash/` - Bash shell configuration
 - `atuin/` - Atuin search and history filtering config under `.config/atuin/`
 - `navi/` - Navi cheatsheets under `.local/share/navi/cheats/`
+- `nvim/` - Neovim config under `.config/nvim/`
 - `helix/` - Helix editor configuration files under `.config/helix/`
 - `opencode/` - OpenCode config and custom skills under `.config/opencode/`
 - `tmuxifier/` - Tmuxifier layout files under `.tmuxifier/`
@@ -27,6 +28,7 @@ This repository is the source of truth for personal terminal and editor configs,
 - `bash/.bashrc` and `bash/.bash_profile` - Bash shell configs
 - `atuin/.config/atuin/config.toml` - Atuin config
 - `navi/.local/share/navi/cheats/` - Navi cheatsheets
+- `nvim/.config/nvim/` - Neovim config
 - `helix/.config/helix/` - Helix editor configuration files
 - `opencode/.config/opencode/` - OpenCode config and skills
 - `tmuxifier/.tmuxifier/layouts/` - Tmuxifier custom layouts
@@ -48,6 +50,9 @@ stow -t "$HOME" tmux wezterm helix opencode tmuxifier
 
 # or stow everything currently tracked for macOS terminal workflow
 stow -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
+
+# include Neovim too
+stow -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
 ```
 
 Remove symlinks for a package:
@@ -65,6 +70,8 @@ stow -n -v -t "$HOME" tmux wezterm helix opencode tmuxifier
 
 # expanded dry run
 stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
+
+stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
 ```
 
 ## SessionX Patch Restore
