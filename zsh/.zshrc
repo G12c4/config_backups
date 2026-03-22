@@ -20,6 +20,13 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias ls='eza --long --header --icons --git --group-directories-first --no-permissions --no-user'
 alias tree='eza --tree --level=2 --long --header --icons --git --group-directories-first --no-permissions --no-user'
 alias op='opencode'
+update_dotfiles_repo() {
+  local repo="$HOME/Documents/config_backups"
+  git -C "$repo" add . && \
+    git -C "$repo" commit -m "Update dotfiles $(date '+%Y-%m-%d %H:%M:%S')" && \
+    git -C "$repo" push
+}
+alias update-dotfiles-repo='update_dotfiles_repo'
 
 # Added by Antigravity
 export PATH="/Users/josip/.antigravity/antigravity/bin:$PATH"
