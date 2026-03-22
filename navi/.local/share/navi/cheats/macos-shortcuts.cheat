@@ -1,0 +1,29 @@
+% shortcuts, macos
+
+# List all macOS Shortcuts
+shortcuts list
+
+# List macOS Shortcuts folders
+shortcuts list --folders
+
+# List shortcuts in a folder
+shortcuts list --folder-name "<folder>"
+$ folder: shortcuts list --folders
+
+# Run a macOS Shortcut by name
+shortcuts run "<shortcut>"
+$ shortcut: shortcuts list
+
+# Run a Shortcut and save its output to a file
+shortcuts run "<shortcut>" --output-path "<output_path>"
+$ shortcut: shortcuts list
+
+# View a Shortcut in the Shortcuts app
+shortcuts view "<shortcut>"
+$ shortcut: shortcuts list
+
+# Sign a Shortcut file
+shortcuts sign --input "<input>" --output "<output>"
+
+# Sign a Shortcut file so anyone can import it
+shortcuts sign --mode anyone --input "<input>" --output "<output>"

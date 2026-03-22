@@ -1,0 +1,29 @@
+% wezterm, terminal
+
+# Open WezTerm in the current directory
+wezterm start --cwd "$PWD"
+
+# Open WezTerm in a chosen directory
+wezterm start --cwd "<path>"
+$ path: find "$HOME" -maxdepth 3 -type d 2>/dev/null
+
+# Start WezTerm with your config file
+wezterm start --config-file "$HOME/.wezterm.lua"
+
+# Show your active WezTerm keybindings
+wezterm show-keys
+
+# List WezTerm panes and tabs as JSON
+wezterm cli list --format json
+
+# Split the current WezTerm pane to the right
+wezterm cli split-pane --right --cwd "$PWD"
+
+# Split the current WezTerm pane to the bottom
+wezterm cli split-pane --bottom --cwd "$PWD"
+
+# Toggle zoom for the current WezTerm pane
+wezterm cli zoom-pane --toggle
+
+# Send text to the current WezTerm pane
+wezterm cli send-text --no-paste "<text>"

@@ -1,0 +1,38 @@
+╔══════════════════════════════════════════════════════════════╗
+║                    TMUX CHEAT SHEET                          ║
+╠══════════════════════════════════════════════════════════════╣
+║  PREFIX = Ctrl+b                                             ║
+╠══════════════════════════════════════════════════════════════╣
+║  WINDOWS                                                     ║
+║  c          New window                                       ║
+║  n / p      Next / Previous window                           ║
+║  1-9        Switch to window number                          ║
+║  ,          Rename window                                    ║
+║  &          Kill window                                      ║
+╠══════════════════════════════════════════════════════════════╣
+║  PANES                                                       ║
+║  |          Split vertical (left/right)                      ║
+║  -          Split horizontal (top/bottom)                    ║
+║  x          Kill current pane                                ║
+║  z          Zoom pane (fullscreen toggle)                    ║
+║  o          Cycle to next pane                               ║
+║  Alt+Arrows Navigate panes (no prefix)                       ║
+╠══════════════════════════════════════════════════════════════╣
+║  SESSION                                                     ║
+║  s          List sessions                                    ║
+║  d          Detach from session                              ║
+║  $          Rename session                                   ║
+║  Ctrl+s     Save session                                     ║
+║  Ctrl+r     Restore session                                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  COPY MODE                                                   ║
+║  [          Enter copy mode (scroll history)                 ║
+║  ]          Paste                                            ║
+║  q          Exit copy mode                                   ║
+╠══════════════════════════════════════════════════════════════╣
+║  OTHER                                                       ║
+║  h          Show this cheat sheet                            ║
+║  r          Reload config                                    ║
+║  t          Clock mode                                       ║
+║  :          Command mode                                     ║
+╚══════════════════════════════════════════════════════════════╝

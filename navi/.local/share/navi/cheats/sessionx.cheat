@@ -1,0 +1,25 @@
+% sessionx, tmux
+
+# Open the SessionX switcher (same as prefix + O)
+tmux run-shell "$HOME/.tmux/plugins/tmux-sessionx/scripts/sessionx.sh"
+
+# Show current SessionX options
+tmux show-options -g | grep '^@sessionx'
+
+# Turn SessionX zoxide mode on
+tmux set-option -g @sessionx-zoxide-mode on
+
+# Turn SessionX zoxide mode off
+tmux set-option -g @sessionx-zoxide-mode off
+
+# Set custom paths for SessionX
+tmux set-option -g @sessionx-custom-paths "<paths>"
+
+# Filter sessions out of SessionX
+tmux set-option -g @sessionx-filtered-sessions "<patterns>"
+
+# Change the SessionX prompt text
+tmux set-option -g @sessionx-prompt "<prompt>"
+
+# Change the SessionX pointer symbol
+tmux set-option -g @sessionx-pointer "<pointer>"

@@ -1,0 +1,30 @@
+% tmux, terminal
+
+# Reload your tmux config (same as prefix + r)
+tmux source-file "$HOME/.tmux.conf"
+
+# Show your tmux cheat sheet file
+cat "$HOME/.tmux-cheatsheet.txt"
+
+# List tmux sessions
+tmux list-sessions
+
+# Create or attach to a tmux session
+tmux new-session -A -s "<session>"
+$ session: tmux list-sessions -F '#S' 2>/dev/null
+
+# Attach to an existing tmux session
+tmux attach -t "<session>"
+$ session: tmux list-sessions -F '#S' 2>/dev/null
+
+# Split the current tmux pane left and right
+tmux split-window -h -c "$PWD"
+
+# Split the current tmux pane top and bottom
+tmux split-window -v -c "$PWD"
+
+# Save the current tmux session with resurrect
+tmux run-shell "$HOME/.tmux/plugins/tmux-resurrect/scripts/save.sh"
+
+# Restore tmux sessions with resurrect
+tmux run-shell "$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh"

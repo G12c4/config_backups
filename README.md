@@ -6,6 +6,10 @@ This repository is the source of truth for personal terminal and editor configs,
 
 - `tmux/` - tmux configuration with TPM plugins, session persistence, and SessionX session management
 - `wezterm/` - WezTerm configuration tuned for a tmux-first workflow with the tab bar disabled
+- `zsh/` - Zsh shell configuration
+- `bash/` - Bash shell configuration
+- `atuin/` - Atuin search and history filtering config under `.config/atuin/`
+- `navi/` - Navi cheatsheets under `.local/share/navi/cheats/`
 - `helix/` - Helix editor configuration files under `.config/helix/`
 - `opencode/` - OpenCode config and custom skills under `.config/opencode/`
 - `tmuxifier/` - Tmuxifier layout files under `.tmuxifier/`
@@ -16,8 +20,13 @@ This repository is the source of truth for personal terminal and editor configs,
 ## Files
 
 - `tmux/.tmux.conf` - main tmux config
+- `tmux/.tmux-cheatsheet.txt` - tmux keybinding cheat sheet
 - `tmux/.tmux/plugins/tmux-sessionx/` - custom SessionX plugin patches, including the `?` help screen override
 - `wezterm/.wezterm.lua` - WezTerm config
+- `zsh/.zshrc` - Zsh shell config
+- `bash/.bashrc` and `bash/.bash_profile` - Bash shell configs
+- `atuin/.config/atuin/config.toml` - Atuin config
+- `navi/.local/share/navi/cheats/` - Navi cheatsheets
 - `helix/.config/helix/` - Helix editor configuration files
 - `opencode/.config/opencode/` - OpenCode config and skills
 - `tmuxifier/.tmuxifier/layouts/` - Tmuxifier custom layouts
@@ -36,6 +45,9 @@ From this repository, stow the packages you want into your home directory:
 ```bash
 cd ~/Documents/config_backups
 stow -t "$HOME" tmux wezterm helix opencode tmuxifier
+
+# or stow everything currently tracked for macOS terminal workflow
+stow -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
 ```
 
 Remove symlinks for a package:
@@ -50,6 +62,9 @@ Preview changes without modifying anything:
 ```bash
 cd ~/Documents/config_backups
 stow -n -v -t "$HOME" tmux wezterm helix opencode tmuxifier
+
+# expanded dry run
+stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
 ```
 
 ## SessionX Patch Restore
