@@ -20,18 +20,24 @@ tcmd -p <pane> [-t <timeout>] <command>
 ```
 
 **Flags:**
-- `-p <pane>` - Target pane (required). Format: `session:window.pane`
+- `-p <pane>` - Target pane (required). Format: `[session:]window.pane`
+  - `1.3` = current session, window 1, pane 3
+  - `2:1.3` = session 2, window 1, pane 3
+  - Defaults to current session if session not specified
 - `-t <timeout>` - Maximum time to wait for command (default: 60s)
 - `-h` - Show help
 
 **Examples:**
 ```bash
-# Basic commands
-tcmd -p 2:1.3 'ls -la'
-tcmd -p 2:1.3 'echo "Hello" && pwd'
+# Current session (short format)
+tcmd -p 1.3 'ls -la'
+tcmd -p 1.3 'echo "Hello" && pwd'
 
-# With longer timeout for slow commands
-tcmd -p 2:1.3 -t 120s 'npm run build'
+# Specific session (full format)
+tcmd -p 2:1.3 'ls -la'
+
+# With longer timeout
+tcmd -p 1.3 -t 120s 'npm run build'
 
 # Complex scripts
 tcmd -p 2:1.3 'for i in 1 2 3; do echo $i; done'
@@ -54,9 +60,9 @@ done'
 
 The tool automatically waits for command completion:
 
-1. Wraps your command with unique start/end markers (`_TCMD_START_<id>_`, `_TCMD_END_<id>_`)
+1. Wraps your command with unique start/end markers (`_TCMD_START_<timestamp>_`, `_TCMD_END_<timestamp>_`)
 2. Executes the command in the target pane
-3. Polls the pane output every 100ms until the end marker appears
+3. Polls the pane output (including scrollback) every 100ms until the end marker appears
 4. Returns only the output between the markers
 
 No manual wait times needed - the tool detects when commands finish.
@@ -86,14 +92,17 @@ tmux list-panes -t 2:1 -F '#{pane_index}: #{pane_current_command}'
 
 ### 2. Execute Command
 ```bash
-# Any command - auto-waits for completion
-~/bin/tcmd -p 2:1.3 'ls -la'
+# Any command - auto-waits for completion (uses current session)
+~/bin/tcmd -p 1.3 'ls -la'
+
+# Specific session
+~/bin/tcmd -p 0:1.1 'ls -la'
 
 # Slow commands - increase timeout if needed
-~/bin/tcmd -p 2:1.3 -t 120s 'npm run build'
+~/bin/tcmd -p 1.3 -t 120s 'npm run build'
 
 # Complex commands with pipes, quotes, loops
-~/bin/tcmd -p 2:1.3 'echo "test" | grep test && echo "done"'
+~/bin/tcmd -p 1.3 'echo "test" | grep test && echo "done"'
 ```
 
 ### 3. User Can See and Interact
@@ -107,7 +116,8 @@ The command runs in the visible pane. Users can:
 
 When running from non-interactive shells (like AI agents), use the full path:
 ```bash
-~/bin/tcmd -p 2:1.3 'command'
+~/bin/tcmd -p 1.3 'command'              # Current session
+~/bin/tcmd -p 0:1.1 'command'            # Specific session
 ```
 
 Users can use the alias `tcmd` after adding to `~/.zshrc`:
@@ -134,24 +144,24 @@ Commands are base64-encoded before execution, avoiding all shell escaping issues
 
 ### Development Server
 ```bash
-~/bin/tcmd -p 2:1.3 'cd ~/project && npm run dev'
+~/bin/tcmd -p 1.3 'cd ~/project && npm run dev'
 # User can see server logs and Ctrl+C to stop
 ```
 
 ### Build and Test
 ```bash
-~/bin/tcmd -p 2:1.3 -t 120s 'npm run build && npm test'
+~/bin/tcmd -p 1.3 -t 120s 'npm run build && npm test'
 ```
 
 ### Interactive Programs
 ```bash
-~/bin/tcmd -p 2:1.3 'vim config.yml'
+~/bin/tcmd -p 1.3 'vim config.yml'
 # User can take over vim session
 ```
 
 ### Quick Check
 ```bash
-~/bin/tcmd -p 2:1.3 'pwd && git status'
+~/bin/tcmd -p 1.3 'pwd && git status'
 ```
 
 ## Direct Tmux Commands
@@ -160,19 +170,19 @@ For operations beyond command execution:
 
 ```bash
 # Send keys directly (no output capture)
-tmux send-keys -t 2:1.3 'command' Enter
+tmux send-keys -t 1.3 'command' Enter
 
 # Capture pane content
-tmux capture-pane -t 2:1.3 -p
+tmux capture-pane -t 1.3 -p
 
 # Create new pane
-tmux split-window -t 2:1 -h
+tmux split-window -t 1 -h
 
 # Select pane
-tmux select-pane -t 2:1.3
+tmux select-pane -t 1.3
 
 # Kill pane
-tmux kill-pane -t 2:1.3
+tmux kill-pane -t 1.3
 ```
 
 ## Pane Border Status

@@ -29,7 +29,7 @@ config.colors = {
     cursor_fg = "#1a110e",
     selection_bg = "#2d1f1a",
     selection_fg = "#f2e9e1",
-
+    
     -- ANSI colors (warm, natural spectrum)
     ansi = {
         "#1a110e",  -- black -> dark orange-red
@@ -51,7 +51,7 @@ config.colors = {
         "#56949f",  -- bright cyan
         "#f2e9e1",  -- bright white -> cream
     },
-
+    
     -- Tab bar colors
     tab_bar = {
         background = "#1a110e",

@@ -1,43 +1,65 @@
 # Configs Backup
 
-This repository stores personal terminal and editor configuration backups.
+This repository is the source of truth for personal terminal and editor configs, managed with GNU Stow.
 
 ## Contents
 
 - `tmux/` - tmux configuration with TPM plugins, session persistence, and SessionX session management
 - `wezterm/` - WezTerm configuration tuned for a tmux-first workflow with the tab bar disabled
-- `helix/` - Helix editor configuration files
-- `waybar/` - Waybar configuration files
+- `helix/` - Helix editor configuration files under `.config/helix/`
+- `opencode/` - OpenCode config and custom skills under `.config/opencode/`
+- `tmuxifier/` - Tmuxifier layout files under `.tmuxifier/`
+- `waybar/` - Waybar configuration files under `.config/waybar/`
+- `docs/` - reference notes that should not be stowed into `$HOME`
+- `scripts/` - helper scripts that should not be stowed into `$HOME`
 
 ## Files
 
-- `tmux/.tmux.conf` - main tmux config backup
-- `tmux/plugins/tmux-sessionx/` - local backup of custom SessionX plugin patches, including the `?` help screen override
-- `wezterm/.wezterm.lua` - hidden-file WezTerm config backup
-- `wezterm/wezterm.lua` - plain filename copy of the WezTerm config
-- `helix/` - Helix editor configuration files
-- `waybar/` - Waybar configuration files
+- `tmux/.tmux.conf` - main tmux config
+- `tmux/.tmux/plugins/tmux-sessionx/` - custom SessionX plugin patches, including the `?` help screen override
+- `wezterm/.wezterm.lua` - WezTerm config
+- `helix/.config/helix/` - Helix editor configuration files
+- `opencode/.config/opencode/` - OpenCode config and skills
+- `tmuxifier/.tmuxifier/layouts/` - Tmuxifier custom layouts
+- `waybar/.config/waybar/` - Waybar configuration files
 
 ## Usage
 
-Copy the configs you want into their target locations:
+Install GNU Stow:
 
 ```bash
-cp tmux/.tmux.conf ~/.tmux.conf
-cp wezterm/.wezterm.lua ~/.wezterm.lua
-cp -r helix/* ~/.config/helix/
-cp -r waybar/* ~/.config/waybar/
+brew install stow
+```
+
+From this repository, stow the packages you want into your home directory:
+
+```bash
+cd ~/Documents/config_backups
+stow -t "$HOME" tmux wezterm helix opencode tmuxifier
+```
+
+Remove symlinks for a package:
+
+```bash
+cd ~/Documents/config_backups
+stow -D -t "$HOME" tmux
+```
+
+Preview changes without modifying anything:
+
+```bash
+cd ~/Documents/config_backups
+stow -n -v -t "$HOME" tmux wezterm helix opencode tmuxifier
 ```
 
 ## SessionX Patch Restore
 
-The tmux backup includes a local SessionX plugin customization that changes `?` to show a help screen and moves preview toggle to `Alt-p`.
+The tmux package includes a local SessionX plugin customization that changes `?` to show a help screen and moves preview toggle to `Alt-p`.
 
-After TPM installs or updates SessionX, restore the patched files with:
+If TPM reinstalls or updates SessionX, restow the `tmux` package to restore the patched files:
 
 ```bash
-cp tmux/plugins/tmux-sessionx/sessionx.tmux ~/.tmux/plugins/tmux-sessionx/sessionx.tmux
-cp tmux/plugins/tmux-sessionx/scripts/help.sh ~/.tmux/plugins/tmux-sessionx/scripts/help.sh
-chmod +x ~/.tmux/plugins/tmux-sessionx/scripts/help.sh
+cd ~/Documents/config_backups
+stow -R -t "$HOME" tmux
 tmux source-file ~/.tmux.conf
 ```

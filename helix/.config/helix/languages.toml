@@ -1,0 +1,62 @@
+[[language]]
+name = "python"
+scope = "source.python"
+roots = ["pyproject.toml", "setup.py"]
+auto-format = true
+formatter = { command = "black", args = ["--quiet", "-"] }
+language-servers = ["pylsp"]
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+roots = ["package.json"]
+auto-format = true
+formatter = { command = "prettier", args = ["--stdin-filepath", "index.js"] }
+language-servers = ["node"]
+
+[[language]]
+name = "go"
+scope = "source.go"
+file-types = ["go"]
+roots = ["go.mod"]
+auto-format = true
+formatter = { command = "gofmt" }
+language-servers = ["gopls"]
+
+[language-server.pylsp]
+command = "pylsp"
+
+[language-server.node]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language-server.gopls]
+command = "gopls"
+config = { analyses = { unusedparams = true }, staticcheck = true, diagnosticsDelay = "100ms" }
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+roots = ["tsconfig.json", "package.json"]
+language-servers = ["node"]
+auto-format = true
+
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+roots = ["tsconfig.json", "package.json"]
+language-servers = ["node"]
+auto-format = true
+
+[[language]]
+name = "astro"
+scope = "source.astro"
+injection-regex = "astro"
+file-types = ["astro"]
+roots = ["package.json", "astro.config.mjs"]
+language-servers = ["astro-ls"]
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = { typescript = { tsdk = "node_modules/typescript/lib" } }
