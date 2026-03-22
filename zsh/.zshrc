@@ -63,6 +63,7 @@ zshaddhistory() {
 }
 
 alias t="tmux"
+alias ta="tmux attach"
 alias tcmd="~/bin/tcmd"
 alias tmx="tmuxifier"
 

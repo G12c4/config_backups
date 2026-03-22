@@ -1,0 +1,46 @@
+% nvim, neovim, editor
+
+# Open normie-nvim test config
+NVIM_APPNAME=normie-nvim nvim
+
+# Save current file in Neovim
+Ctrl+s
+
+# Open Yazi file picker in Neovim
+Ctrl+y
+
+# Open Lazygit in Neovim
+Ctrl+g
+
+# Open file explorer in Neovim
+<leader>e
+
+# Smart file picker in Neovim
+<leader><space>
+
+# Find files in Neovim
+<leader>ff
+
+# Grep project in Neovim
+<leader>/
+
+# Next buffer in Neovim
+Tab
+
+# Previous buffer in Neovim
+Shift+Tab
+
+# Go to definition in Neovim
+gd
+
+# Show references in Neovim
+gr
+
+# Search document symbols in Neovim
+<leader>ss
+
+# Reload normie-nvim config and theme
+<leader>rr
+
+# Open markdown preview in Neovim
+<leader>mp
