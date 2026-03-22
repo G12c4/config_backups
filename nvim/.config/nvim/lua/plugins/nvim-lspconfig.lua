@@ -29,6 +29,31 @@ return {
         require('mason').setup(opts)
       end,
     },
+    {
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      opts = {
+        ensure_installed = {
+          'lua-language-server',
+          'pyright',
+          'typescript-language-server',
+          'tailwindcss-language-server',
+          'clangd',
+          'bash-language-server',
+          'rust-analyzer',
+          'html-lsp',
+          'css-lsp',
+          'gopls',
+          'astro-language-server',
+        },
+        auto_update = false,
+        run_on_start = true,
+        start_delay = 3000,
+        debounce_hours = 24,
+      },
+      config = function(_, opts)
+        require('mason-tool-installer').setup(opts)
+      end,
+    },
     'saghen/blink.cmp', -- Allows extra capabilities provided by blink.cmp
   },
   config = function()

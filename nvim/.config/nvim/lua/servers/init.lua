@@ -14,6 +14,8 @@ require 'servers.bashls'(capabilities)
 require 'servers.rust_analyzer'(capabilities)
 require 'servers.html'(capabilities)
 require 'servers.cssls'(capabilities)
+require 'servers.gopls'(capabilities)
+require 'servers.astro'(capabilities)
 require 'servers.nil_ls'(capabilities)
 require 'servers.hyprls'(capabilities)
 
@@ -28,6 +30,8 @@ vim.lsp.enable {
   'pyright',
   'html',
   'cssls',
+  'gopls',
+  'astro',
   'nil_ls',
   'hyprls',
 }

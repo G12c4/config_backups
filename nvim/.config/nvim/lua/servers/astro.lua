@@ -1,22 +1,18 @@
 -- ================================================================================================
--- TITLE : tailwindcss LSP Setup
+-- TITLE : astro (Astro Language Server) LSP Setup
 -- LINKS :
---   > github: https://github.com/tailwindlabs/tailwindcss-intellisense
+--   > github: https://github.com/withastro/language-tools
 -- ================================================================================================
 
 --- @param capabilities table LSP client capabilities (typically from blink-cmp or similar)
 --- @return nil
 return function(capabilities)
-  vim.lsp.config('tailwindcss', {
+  vim.lsp.config('astro', {
+    cmd = { 'astro-ls', '--stdio' },
     capabilities = capabilities,
-    filetypes = {
-      'astro',
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-      'vue',
-      'svelte',
+    filetypes = { 'astro' },
+    init_options = {
+      typescript = {},
     },
   })
 end
