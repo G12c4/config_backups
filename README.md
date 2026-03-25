@@ -6,8 +6,6 @@ This repository is the source of truth for personal terminal and editor configs,
 
 - `tmux/` - tmux configuration with TPM plugins, session persistence, and SessionX session management
 - `wezterm/` - WezTerm configuration tuned for a tmux-first workflow with the tab bar disabled
-- `zsh/` - Zsh shell configuration for macOS machines that still use Zsh
-- `bash/` - Bash shell configuration
 - `atuin/` - Atuin search and history filtering config under `.config/atuin/`
 - `navi/` - Navi cheatsheets under `.local/share/navi/cheats/`
 - `nvim/` - Neovim config under `.config/nvim/`
@@ -24,8 +22,6 @@ This repository is the source of truth for personal terminal and editor configs,
 - `tmux/.tmux-cheatsheet.txt` - tmux keybinding cheat sheet
 - `tmux/.tmux/plugins/tmux-sessionx/` - custom SessionX plugin patches, including the `?` help screen override
 - `wezterm/.wezterm.lua` - WezTerm config
-- `zsh/.zshrc` - Zsh shell config for macOS-only setups
-- `bash/.bashrc` and `bash/.bash_profile` - Bash shell configs
 - `atuin/.config/atuin/config.toml` - Atuin config
 - `navi/.local/share/navi/cheats/` - Navi cheatsheets
 - `nvim/.config/nvim/` - Neovim config
@@ -36,7 +32,7 @@ This repository is the source of truth for personal terminal and editor configs,
 
 ## Usage
 
-Linux note: do not stow `zsh/` on this machine. That package is kept for macOS hosts that still use Zsh.
+Shell configs now live in the separate private `shell-configs` repo. This repo only keeps shared terminal, editor, tmux, and OpenCode config.
 
 Install GNU Stow:
 
@@ -50,17 +46,11 @@ From this repository, stow the packages you want into your home directory:
 cd ~/Documents/config_backups
 stow -t "$HOME" tmux wezterm helix opencode tmuxifier
 
-# Linux/bash workflow
-stow -t "$HOME" tmux wezterm bash atuin navi helix opencode tmuxifier
+# include shared terminal workflow extras
+stow -t "$HOME" tmux wezterm atuin navi helix opencode tmuxifier
 
-# macOS/zsh workflow
-stow -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
-
-# include Neovim too on Linux/bash
-stow -t "$HOME" tmux wezterm bash atuin navi nvim helix opencode tmuxifier
-
-# include Neovim too on macOS/zsh
-stow -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
+# include Neovim too
+stow -t "$HOME" tmux wezterm atuin navi nvim helix opencode tmuxifier
 ```
 
 Remove symlinks for a package:
@@ -76,17 +66,11 @@ Preview changes without modifying anything:
 cd ~/Documents/config_backups
 stow -n -v -t "$HOME" tmux wezterm helix opencode tmuxifier
 
-# expanded Linux/bash dry run
-stow -n -v -t "$HOME" tmux wezterm bash atuin navi helix opencode tmuxifier
+# expanded shared dry run
+stow -n -v -t "$HOME" tmux wezterm atuin navi helix opencode tmuxifier
 
-# expanded macOS/zsh dry run
-stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
-
-# include Neovim on Linux/bash
-stow -n -v -t "$HOME" tmux wezterm bash atuin navi nvim helix opencode tmuxifier
-
-# include Neovim on macOS/zsh
-stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
+# include Neovim too
+stow -n -v -t "$HOME" tmux wezterm atuin navi nvim helix opencode tmuxifier
 ```
 
 ## SessionX Patch Restore
