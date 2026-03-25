@@ -1,5 +1,10 @@
 # Bash completions
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+if command -v brew >/dev/null 2>&1; then
+    BREW_PREFIX=$(brew --prefix 2>/dev/null)
+    if [[ -n "$BREW_PREFIX" && -r "$BREW_PREFIX/etc/profile.d/bash_completion.sh" ]]; then
+        . "$BREW_PREFIX/etc/profile.d/bash_completion.sh"
+    fi
+fi
 
 # WezTerm CLI completions
 if command -v wezterm &>/dev/null; then
@@ -12,11 +17,6 @@ HISTFILESIZE=20000
 HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
-# Up/Down arrows search history based on what you've typed
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-
-# Ctrl+R for fuzzy history search (optional but powerful)
-bind '"\C-r": reverse-search-history'
-
-. "$HOME/.atuin/bin/env"
+if [[ -f ~/.bashrc ]]; then
+    . ~/.bashrc
+fi
