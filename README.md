@@ -1,20 +1,17 @@
-# Configs Backup
+# macOS Config Backup
 
-This repository is the source of truth for personal terminal and editor configs, managed with GNU Stow.
+This repository is the source of truth for the macOS machine's terminal and editor configs, managed with GNU Stow.
 
 ## Contents
 
 - `tmux/` - tmux configuration with TPM plugins, session persistence, and SessionX session management
 - `wezterm/` - WezTerm configuration tuned for a tmux-first workflow with the tab bar disabled
-- `zsh/` - Zsh shell configuration
-- `bash/` - Bash shell configuration
 - `atuin/` - Atuin search and history filtering config under `.config/atuin/`
 - `navi/` - Navi cheatsheets under `.local/share/navi/cheats/`
 - `nvim/` - Neovim config under `.config/nvim/`
 - `helix/` - Helix editor configuration files under `.config/helix/`
 - `opencode/` - OpenCode config and custom skills under `.config/opencode/`
 - `tmuxifier/` - Tmuxifier layout files under `.tmuxifier/`
-- `waybar/` - Waybar configuration files under `.config/waybar/`
 - `docs/` - reference notes that should not be stowed into `$HOME`
 - `scripts/` - helper scripts that should not be stowed into `$HOME`
 
@@ -24,17 +21,16 @@ This repository is the source of truth for personal terminal and editor configs,
 - `tmux/.tmux-cheatsheet.txt` - tmux keybinding cheat sheet
 - `tmux/.tmux/plugins/tmux-sessionx/` - custom SessionX plugin patches, including the `?` help screen override
 - `wezterm/.wezterm.lua` - WezTerm config
-- `zsh/.zshrc` - Zsh shell config
-- `bash/.bashrc` and `bash/.bash_profile` - Bash shell configs
 - `atuin/.config/atuin/config.toml` - Atuin config
 - `navi/.local/share/navi/cheats/` - Navi cheatsheets
 - `nvim/.config/nvim/` - Neovim config
 - `helix/.config/helix/` - Helix editor configuration files
 - `opencode/.config/opencode/` - OpenCode config and skills
 - `tmuxifier/.tmuxifier/layouts/` - Tmuxifier custom layouts
-- `waybar/.config/waybar/` - Waybar configuration files
 
 ## Usage
+
+Shell configs now live in the separate private `shell-configs` repo. Linux-specific configs live in the separate `config_backups_linux` repo. This repo only keeps the macOS machine's terminal, editor, tmux, and OpenCode config.
 
 Install GNU Stow:
 
@@ -48,11 +44,11 @@ From this repository, stow the packages you want into your home directory:
 cd ~/Documents/config_backups
 stow -t "$HOME" tmux wezterm helix opencode tmuxifier
 
-# or stow everything currently tracked for macOS terminal workflow
-stow -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
+# include shared terminal workflow extras
+stow -t "$HOME" tmux wezterm atuin navi helix opencode tmuxifier
 
 # include Neovim too
-stow -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
+stow -t "$HOME" tmux wezterm atuin navi nvim helix opencode tmuxifier
 ```
 
 Remove symlinks for a package:
@@ -68,10 +64,11 @@ Preview changes without modifying anything:
 cd ~/Documents/config_backups
 stow -n -v -t "$HOME" tmux wezterm helix opencode tmuxifier
 
-# expanded dry run
-stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi helix opencode tmuxifier
+# expanded shared dry run
+stow -n -v -t "$HOME" tmux wezterm atuin navi helix opencode tmuxifier
 
-stow -n -v -t "$HOME" tmux wezterm zsh bash atuin navi nvim helix opencode tmuxifier
+# include Neovim too
+stow -n -v -t "$HOME" tmux wezterm atuin navi nvim helix opencode tmuxifier
 ```
 
 ## SessionX Patch Restore

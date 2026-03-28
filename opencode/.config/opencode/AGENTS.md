@@ -5,3 +5,4 @@
 - **Task Management:** Always use the commands defined in the `Makefile` or `Taskfile` for building, linting, or running tasks. Do not invent custom build commands.
 - **Test-Driven Delivery:** Before declaring any feature, bug fix, or change as "done," you must always run the existing tests and update them (or write new ones) to cover your changes. Also use the built in playwright browser to test the new feature.
 - **Small Reusable Components with props:** When building new features or improving existing ones on the frontend we will always use small, reusable, proffesional componets with props instead of huge all in one files. Check out the current componnet structure.
+- **Git Safety for Local Worktrees:** For git cleanup, repo recovery, dotfiles, stow, symlinked configs, pull/sync/update, or any operation that could overwrite local state, load and follow the `git-worktree-safety` skill before taking action.

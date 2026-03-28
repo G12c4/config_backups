@@ -97,7 +97,7 @@
     "todoread": "allow",
     "question": "allow",
     "webfetch": "allow",
-    "external_directory": "ask"
+    "external_directory": "allow"
   },
   "agent": {
     "agent": {
@@ -111,14 +111,16 @@
     "build": {
       "permission": {
         "edit": "ask",
-        "bash": "ask"
+        "bash": "ask",
+        "external_directory": "allow"
       }
     },
     "plan": {
       "permission": {
         "read": "allow",
         "edit": "deny",
-        "bash": "allow"
+        "bash": "allow",
+        "external_directory": "allow"
       }
     }
   }
